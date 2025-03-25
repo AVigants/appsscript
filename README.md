@@ -32,7 +32,7 @@ Add this OAuth2 library: ```1B7FSrk5Zi6L1rSxxTDgDEUsPzlukDsi4KGuTMorsTQHhGBzBkMu
 This will handle the OAuth flow. Copy this code to Code.gs:
 ```javascript
 function authCallback(request) {
-  var service = getSearchConsoleService();
+  var service = GET_SERVICE();    // replace with the appropriate service function as per context
   var isAuthorized = service.handleCallback(request);
   if (isAuthorized) {
     return HtmlService.createHtmlOutput('Authorization successful!');
@@ -52,7 +52,7 @@ function authorize() {
 }
 
 function resetAuth() {
-  var service = getSearchConsoleService();
+  var service = GET_SERVICE();    // replace with the appropriate service function as per context
   service.reset();
   Logger.log('Authorization reset.');
 }
