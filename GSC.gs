@@ -20,7 +20,7 @@ function GSC(
   endDate = normalizeDate(endDate) || getLastThreeMonths().endDate;
 
   try {
-    var service = GET_SERVICE();
+    var service = getService();
     if (!service.hasAccess()) {
       Logger.log('Authorization required. Run "authorize" first.');
       return 'Authorization required. Run "authorize" first.';
@@ -199,7 +199,7 @@ function normalizeDate(dateInput) {
 }
 
 function listGSCProperties() {
-  var service = GET_SERVICE();
+  var service = getService();
   if (!service.hasAccess()) {
     Logger.log('Authorization required. Run "authorize" function.');
     return 'Authorization required. Run "authorize" function.';
