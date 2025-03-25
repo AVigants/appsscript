@@ -87,8 +87,18 @@ function GET_SERVICE() {
 ```
 Replace YOUR_CLIENT_ID and YOUR_CLIENT_SECRET with the values from the json file we downloaded earlier.
 
+Then, head over to Project Settings in appsScript and enable `Show "appsscript.json" manifest file in editor`. Then add these scopes to the JSON file:
+```JSON
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/webmasters.readonly",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+```
+
 ### 6. Run authorize()
 In appsscript, run the authorize() function. Copy the redirect link. If the authorization is unsuccessful, and you're seeing this message "Access blocked: YOUR-APP-NAME has not completed the Google verification process. The app is currently being tested, and can only be accessed by developer-approved testers" then you need to add yourself as a tester. Head back to Google Cloud Console -> APIs and Services -> Credentials -> The OAuth 2.0 Client we created -> Audience -> add Test users and add your email. Then run authorize() again.
+
 
 ### 7. Deploy the script
 You may need to deploy the script if authorize() is still not proceeding.
