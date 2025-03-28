@@ -144,3 +144,22 @@ function listGSCProperties() {
   }
 }
 ```
+
+## USAGE EXAMPLE
+To start using the search console code in Google Sheets, we need to pass some variables to the =GSC function.
+```
+=GSC(property, dimension, startDate, endDate, matchOperator, expression)
+```
+where 
+- `property` is the property of the Google Search Console property. To find the exact property value, head over to Google Search Console and open any property. In the URL bar you will see something like so: https://search.google.com/search-console?resource_id={URL_ENCODED_PROPERTY_ID} - we need to copy the URL_ENCODED_PROPERTY_ID and transform it to readable text. You can use any URL decoder if it needs to be decoded ( I prefer cyberchef: https://gchq.github.io/CyberChef/#recipe=URL_Decode() )
+- `dimension` is the dimension: either `page` or `query`, same as in Google Search Console
+- `startDate` is the start date. You can use the =TODAY() formula here and subbtract days as needed for convenience
+-  `endDate` is the end date. Same as above, you can use datetime values like the ones derived from formulas like =TODAY()
+-  `matchOperator` is the type of match you want to use. Accepted values are `contains`, `!contains` (does not contain - opposite of `contains`), `equals`, `regex`. Same as in Google Search Console
+-  `expression` is the actual URL or query we want to pass as text.
+
+EXAMPLE:
+```
+=GSC("https://example.com/","page",TODAY()-30,TODAY()-3,"contains","/blog/")
+```
+will return data from Google Search Console for example.com between 30 days ago (start date) and 3 days ago from today (end date) where the URL (page) *contains* `/blog/`
