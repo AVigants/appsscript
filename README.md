@@ -111,7 +111,7 @@ You may need to deploy the script if authorize() is still not proceeding.
 Now we can run a custom function to list all of our GSC properties. Same as with authorize(), add this code to Code.gs and run the code. The logs should list the properties to which we have access to.
 ```javascript
 function listGSCProperties() {
-  var service = getSearchConsoleService();
+  var service = GET_SERVICE();
   if (!service.hasAccess()) {
     Logger.log('Authorization required. Run "authorize" function.');
     return;
